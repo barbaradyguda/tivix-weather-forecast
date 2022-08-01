@@ -1,47 +1,67 @@
 import React, { useEffect, useState } from "react";
 import { styles } from "./styles"
-import { Box, Typography, Button } from "@mui/material"
+import { Box, Typography, Button, Grid } from "@mui/material"
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 
 const DailyBox = ({
     visibleDay,
     setVisibleDay,
-    dayTemperatures,
-    nightTemperatures,
+    dayTemperature,
+    nightTemperature,
     morningTemperature,
     humidity,
-    minTempValues,
-    maxTempValues
+    minTempValue,
+    maxTempValue
 
 }) => {
 
-    // const dailyTemperature = (data.temp - 272.15).toFixed(2);
-    // const nightlyTemperature = (data.temp - 272.15).toFixed(2);
-    // const humidity = data.humidity
-
     useEffect(() => {
-        console.debug("wherearewenow")
+        setVisibleDay(visibleDay)
     }, []);
 
-
-    const getMeanDailyTemperature = (dayTemperatures) => {
-        // console.debug("---------dayTemperatures", dayTemperatures)
-        // const sum = dayTemperatures.reduce((a, b) => a + b, 0);
-        // console.debug("sum", sum)
-        // const meanDailyTemperature = (sum / dayTemperatures.length) || 0;
-        // console.debug("meanDailyTemperature", meanDailyTemperature)
-        // return meanDailyTemperature
-    }
-
-    // const arrayDailyData = dailyData && Object.entries(dailyData);
 
     return (
         <Box sx={styles.searchContainer} style={{ height: 10, backgroundColor: "blue", margin: 8 }}>
             <Button onClick={()=>setVisibleDay("2022-08-02")}>
-               { console.debug(visibleDay)}
+   
                 {/* <Typography>{getMeanDailyTemperature(dayTemperatures)}</Typography>
                 <Typography>{getMeanDailyTemperature(dayTemperatures)}</Typography> */}
             </Button>
+      <Typography>{visibleDay}</Typography>
+      
+     
+           
+
+            <Box sx={{ flexGrow: 1 }}>
+      <Grid container spacing={2}>
+        <Grid item xs={2}>
+        <Typography>temp pdnia {dayTemperature} C</Typography>
+           
+        </Grid>
+        <Grid item xs={2}>
+        <Typography>temp morn {morningTemperature} C</Typography>
+      
+        </Grid>
+        <Grid item xs={2}>
+        <Typography>temp night {nightTemperature} C</Typography>
+          
+        </Grid>
+        <Grid item xs={2}>
+        <Typography>hum {humidity} % </Typography>
+       
+        </Grid>
+        <Grid item xs={2}>
+     
+            <Typography>max {maxTempValue} C </Typography>
+        </Grid>
+        <Grid item xs={2}>
+    
+            <Typography>max {maxTempValue} C </Typography>
+        </Grid>
+        <ArrowForwardIosIcon/>
+      </Grid>
+    </Box>
         </Box>
     );
 }
